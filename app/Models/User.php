@@ -2,15 +2,22 @@
 
 namespace App\Models;
 
+/**
+ * you need to add this "use Laravel\Cashier\Billable;" command in 
+ * your file and also add "Billable" in code section for usig the
+ * payment (billable) method in this project.
+ */
+
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Billable;
 
     /**
      * The attributes that are mass assignable.
@@ -41,4 +48,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function listings(){
+        return $this-> hasMany(Listing::class);
+    }
 }
