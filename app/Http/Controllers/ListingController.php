@@ -20,6 +20,7 @@ class ListingController extends Controller
             ->with('tags')
             ->latest();
 
+
         if ($request->has('s')) {
             $searchQuery = trim($request->get('s'));
 
@@ -30,6 +31,7 @@ class ListingController extends Controller
                     ->orWhere('location', 'like', "%{$searchQuery}%");
             });
         }
+
 
         if ($request->has('tag')) {
             $tag = $request->get('tag');
@@ -62,6 +64,7 @@ class ListingController extends Controller
         return redirect()->to($listing->apply_link);
     }
 
+    
     public function create()
     {
         return view('listings.create');
