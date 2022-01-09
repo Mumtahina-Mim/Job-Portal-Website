@@ -84,6 +84,9 @@ class ListingController extends Controller
             'payment_method_id' => 'required'
         ];
 
+        /**
+         * authentication checking
+         */
         if (!Auth::check()) {
             $validationArray = array_merge($validationArray, [
                 'email' => 'required|email|unique:users',
