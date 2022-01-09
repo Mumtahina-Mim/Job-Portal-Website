@@ -40,7 +40,7 @@
 
                 <!--
                     three fields are made for taking user input 
-                    (email, name, password)
+                    (email, name, password, confirm password)
                 -->
                     <div class="flex mb-4">
                         <div class="flex-1 mx-2">
@@ -173,6 +173,10 @@
             </form>
         </div>
     </section>
+    <!--
+        this javascript section is used to finilize the payment method.
+        the "STRIPE_KEY" api add from stripe.com site
+    -->
     <script src="https://js.stripe.com/v3/"></script>
     <script>
         const stripe = Stripe("{{ env('STRIPE_KEY') }}");
@@ -185,6 +189,13 @@
 
         cardElement.mount('#card-element');
 
+        /**
+            card number and amount is being validated here 
+            by the api from the stripe.com
+            if there any error the system generate an error message and 
+            show it to the user otherwise the action will be performed
+         */
+         
         document.getElementById('form_submit').addEventListener('click', async (e) => {
             // prevent the submission of the form immediately
             e.preventDefault();
