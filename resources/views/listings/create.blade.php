@@ -1,3 +1,6 @@
+<!--
+    x-app-layout component is used to extend of creating a wrapper
+-->
 <x-app-layout>
     <section class="text-gray-600 body-font overflow-hidden">
         <div class="w-full md:w-1/2 py-24 mx-auto">
@@ -6,6 +9,11 @@
                     Create a new listing ($99)
                 </h2>
             </div>
+
+            <!--
+                if we find any error then we need to loop through the 
+                error and just print the error message
+            -->
             @if($errors->any())
                 <div class="mb-4 p-4 bg-red-200 text-red-800">
                     <ul>
@@ -15,6 +23,7 @@
                     </ul>
                 </div>
             @endif
+
             <form
                 action="{{ route('listings.store') }}"
                 id="payment_form"
@@ -22,7 +31,17 @@
                 enctype="multipart/form-data"
                 class="bg-gray-100 p-4"
             >
+
+            <!--
+                using "@guest" we can wrap these input in it and it'll
+                only display this users who are not autenticated
+            -->
                 @guest
+
+                <!--
+                    three fields are made for taking user input 
+                    (email, name, password)
+                -->
                     <div class="flex mb-4">
                         <div class="flex-1 mx-2">
                             <x-label for="email" value="Email Address" />
