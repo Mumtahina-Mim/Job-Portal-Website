@@ -2,10 +2,10 @@
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
-            <x-label value="Log In" /> 
+            <x-label value="LOG IN" /> 
             </a>
         </x-slot>
-
+        <!-- This is our Log in page in our web view page -->
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
@@ -15,14 +15,14 @@
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
-            <!-- Email Address -->
+            <!-- Email Address in this option in the view page -->
             <div>
                 <x-label for="email" :value="__('EMAIL')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>
-
-            <!-- Password -->
+            
+            <!-- Password give in this option in view page -->
             <div class="mt-4">
                 <x-label for="password" :value="__('PASSWORD')" />
 
@@ -32,7 +32,7 @@
                                 required autocomplete="current-password" />
             </div>
 
-            <!-- Remember Me -->
+            <!-- Remember Me (if select it ,then we log in that page this password was saved and suggest us) -->
             <div class="block mt-4">
                 <label for="remember_me" class="inline-flex items-center">
                     <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
@@ -46,7 +46,7 @@
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
-
+                <!-- if you are not remember then it will be your other option to get password -->
                 <x-button class="ml-3">
                     {{ __('Log in') }}
                 </x-button>
