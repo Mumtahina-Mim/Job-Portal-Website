@@ -69,7 +69,11 @@ class ListingController extends Controller
 
     public function store(Request $request)
     {
-        // process the listing creation form
+        /**
+         * this is where we going to process the listing creation 
+         * form, validate the input, make the purches and create
+         * the listing
+         */
         $validationArray = [
             'title' => 'required',
             'company' => 'required',
