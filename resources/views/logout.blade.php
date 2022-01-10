@@ -7,7 +7,7 @@
 <body> 
    
   <div class="container">
-    <h2>Laravel Custom Logout System - CodeCheef</h2>
+    <h2>Laravel Custom Logout System </h2>
     <div class="card">
       <div class="card-header">Laravel Custom Logout</div>
       <div class="card-body"><div class="col-md-12 text-center">
