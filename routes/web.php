@@ -25,3 +25,6 @@ Route::get('/{listing}', [Controllers\ListingController::class, 'show'])
 
 Route::get('/{listing}/apply', [Controllers\ListingController::class, 'apply'])
     ->name('listings.apply');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
