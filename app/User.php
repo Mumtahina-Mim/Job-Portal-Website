@@ -40,6 +40,11 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * there are some funcationalities for the user which 
+     * help the user to feel the better understand the project
+     */
+
     public function profile(){
         return $this->hasOne(Profile::class);
     }
