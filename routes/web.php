@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Post;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +12,12 @@ use App\Post;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/',[App\Http\Controllers\HomeController::class, 'JobController']);
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Route::get('/test/{id}', [App\Http\Controllers\HomeController::class, 'test']);
 
-Route::get('posts',function(){
-  Post::create([
-       'title'=>"a title",
-       'description'=>"a desc",
-  ]);
-});
+//company
+Route::get('/companies','CompanyController@company')->name('company');

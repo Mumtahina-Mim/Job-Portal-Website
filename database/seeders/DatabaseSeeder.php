@@ -13,8 +13,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-       
+     
       \App\Models\User::factory(10)->create();
-      \App\Models\Profile::factory(10)->create();
+      \App\Models\Company::factory(10)->create();
+      \App\Models\JOb::factory(10)->create();
+       
+        
+        $categories = [
+
+            'Technology',
+            'Engineering',
+            'Government',
+            'Medical',
+            'Construction',
+            'Software'
+
+        ];
+        foreach($categories as $category){
+            Category::create(['name'=>$category]);
+        }
     }
 }

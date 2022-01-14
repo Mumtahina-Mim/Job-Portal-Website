@@ -8,11 +8,13 @@
                 <div class="card-header">{{ __('Dashboard') }}</div>
 
                 <div class="card-body">
-                   <form action="{{ route('jobs.store') }}" method="POST">
-                       @csrf
-                       <input type="text" name="title" class="form-control">
-                       <button type="submit" class="btn btn-success">Submit</button>
-                   </form>
+                    @if (session('status'))
+                        <div class="alert alert-success" role="alert">
+                            {{ session('status') }}
+                        </div>
+                    @endif
+
+                    {{ __('You are logged in!') }}
                 </div>
             </div>
         </div>
