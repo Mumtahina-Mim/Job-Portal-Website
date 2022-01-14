@@ -13,15 +13,24 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-      $tags = Tag::factory(10)->create();
+     
+      \App\Models\User::factory(10)->create();
+      \App\Models\Company::factory(10)->create();
+      \App\Models\JOb::factory(10)->create();
+       
+        
+        $categories = [
 
-      User::factory(20)->create()->each(function($user) use($tags){
-        Listing::factory(rand(1,4))->create([
-          'user_id' => $user -> id
-        ])->each(function($listing) use($tags) {
-          $listing->tags()->attach($tags->random(2));
-        });
-      });
-    }  
+            'Technology',
+            'Engineering',
+            'Government',
+            'Medical',
+            'Construction',
+            'Software'
 
+        ];
+        foreach($categories as $category){
+            Category::create(['name'=>$category]);
+        }
+    }
 }
