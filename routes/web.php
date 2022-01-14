@@ -30,7 +30,11 @@ Auth::routes(['verify' => true]);
 
 
 
-	
+/**
+ * home page 
+ * jobs page
+ * routes are define here
+ */
 
 Route::get('/home', 'HomeController@index')->name('home');
 
