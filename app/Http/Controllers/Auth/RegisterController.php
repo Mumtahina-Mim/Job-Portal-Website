@@ -48,6 +48,11 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
+
+     /**
+      * validating data from the database which is 
+      * given by the user to validate the user
+      */
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -61,6 +66,7 @@ class RegisterController extends Controller
 
     /**
      * Create a new user instance after a valid registration.
+     * And store the data in the database user table
      *
      * @param  array  $data
      * @return \App\User
