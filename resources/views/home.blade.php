@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
+<!--
+    this page will show the favourite jobs which is 
+    selected by the user and if the user don't have 
+    any favourite jobs then the system will give 
+    him a message.
+-->
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-10">
