@@ -3,13 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Job;
+use App\Models\Job;
 use App\Company;
 use App\Http\Requests\JobPostRequest;
 use Auth;
-use App\User;
-use App\Category;
-use App\Post;
+use App\Models\User;
+use App\Models\Category;
+use App\Models\Post;
 use App\Testimonial;
 class JobController extends Controller
 {
