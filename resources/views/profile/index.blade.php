@@ -3,6 +3,12 @@
 @section('content')
 <div class="container">
     <div class="row">
+
+        <!--
+            this form take the user data to update the 
+            user information which is given by the user
+            in the later time 
+        -->
         <div class="col-md-3">
             @if(empty(Auth::user()->profile->avatar))
             <img src="{{asset('avatar/man.jpg')}}" width="100" style="width: 100%;">
@@ -31,6 +37,11 @@
 
         </div>
 
+        <!--
+            when the profile getting updated the system generate 
+            a message which will generate a notification that 
+            the profile is being updated.
+        -->
         <div class="col-md-5">
             @if(Session::has('message'))
                  <div class="alert alert-success">
@@ -93,6 +104,12 @@
         </div>
 
 
+        <!--
+            the below form take the user data to make a resume and cover letter
+            by taking the information the system will make a cover letter and a
+            resume of the user. the user can update the cover letter and resume 
+            at any time by giving the information
+        -->
 </form>
         <div class="col-md-4">
             <div class="card">
