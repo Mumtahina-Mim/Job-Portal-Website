@@ -1,27 +1,43 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers;
 
-Route::get('/', [Controllers\ListingController::class, 'index'])
-    ->name('listings.index');
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+*/
 
-Route::get('/new', [Controllers\ListingController::class, 'create'])
-    ->name('listings.create');
 
-Route::post('/new', [Controllers\ListingController::class, 'store'])
-    ->name('listings.store');
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/dashboard', function (\Illuminate\Http\Request $request) {
-    return view('dashboard', [
-        'listings' => $request->user()->listings
-    ]);
-})->middleware(['auth'])->name('dashboard');
+/**
+ * @brief
+ * 
+ *company
+ */
 
-require __DIR__.'/auth.php';
 
-Route::get('/{listing}', [Controllers\ListingController::class, 'show'])
-    ->name('listings.show');
+/**
+ * route a company using 'CompanyController'
+ */
+Route::get('/company/{id}/{company}','CompanyController@index')->name('company.index');
 
-Route::get('/{listing}/apply', [Controllers\ListingController::class, 'apply'])
-    ->name('listings.apply');
+
+/**
+ * view
+ */
+Route::get('company/create','CompanyController@create')->name('company.view');
+
+/**
+ * store
+ */
+Route::post('company/create','CompanyController@store')->name('company.store');
+
+/**
+ * details of company 
+ */
+Route::get('/companies','CompanyController@company')->name('company');

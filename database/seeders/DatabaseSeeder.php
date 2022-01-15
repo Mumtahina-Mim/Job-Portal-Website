@@ -1,29 +1,51 @@
 <?php
 
-namespace Database\Seeders;
-
-use App\Models\Listing;
-use App\Models\Tag;
-use App\Models\User;
 use Illuminate\Database\Seeder;
-
+use App\Category;
+use App\User;
+use App\Role;
 class DatabaseSeeder extends Seeder
 {
     /**
      * Seed the application's database.
-     *
+     * @brief
+     * 
      * @return void
+     * 
      */
     public function run()
     {
-        $tags = Tag::factory(10)->create();
+        Category::truncate();
+    	factory('App\User',20)->create();
+    	factory('App\Company',20)->create();
+    	factory('App\Job',20)->create();
 
-        User::factory(20)->create()->each(function($user) use($tags) {
-            Listing::factory(rand(1, 4))->create([
-                'user_id' => $user->id
-            ])->each(function($listing) use($tags) {
-                $listing->tags()->attach($tags->random(2));
-            });
-        });
-    }
+        $categories = [
+
+            'Technology',
+            'Engineering',
+            'Government',
+            'Medical',
+            'Construction',
+            'Software'
+
+        ];
+        foreach($categories as $category){
+            Category::create(['name'=>$category]);
+        }
+
+        Role::truncate();
+        $adminRole = Role::create(['name'=>'admin']);
+
+        $admin = User::create([
+            'name'=>'admin',
+            'email'=>'admin@gmail.com',
+            'password'=>bcrypt('password123'),
+            'email_verified_at'=>NOW()
+        ]);
+
+        $admin->roles()->attach($adminRole);
+
+
+       }
 }
