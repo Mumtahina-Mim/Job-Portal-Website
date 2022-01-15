@@ -43,7 +43,7 @@ Route::middleware('auth')->prefix('account')->group(function () {
     Route::post('category', [CompanyCategoryController::class, 'store'])->name('category.store');
     Route::put('category/{id}', [CompanyCategoryController::class, 'update'])->name('category.update');
     Route::delete('category/{id}', [CompanyCategoryController::class, 'destroy'])->name('category.destroy');
-  );
+
 
   //Author Role Routes
   Route::group(['middleware' => ['role:author']], function () {
