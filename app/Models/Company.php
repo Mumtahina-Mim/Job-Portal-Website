@@ -7,15 +7,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Company extends Model
 {
-	protected $fillable = [
-        'cname', 'user_id', 'slug','address','phone','website','logo','cover_photo','slogan','description'
-    ];
+    use HasFactory;
 
-    public function jobs(){
-    	return $this->hasMany('App\Job');
+    public function getCategory()
+    {
+        return $this->hasOne('App\Models\CompanyCategory', 'id', 'company_category_id');
     }
-    public function getRouteKeyName(){
-		return 'slug';
-	}
-    
+    public function posts()
+    {
+        return $this->hasMany('App\Models\Post');
+    }
 }
