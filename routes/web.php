@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/',[App\Http\Controllers\HomeController::class, 'JobController']);
 
+
+//jobs
+Route::get('/',[App\Http\Controllers\JobController::class, 'JobController']);
+Route::get('/jobs/create',[App\Http\Controllers\JobController::class, 'JobController'])->name('job.create');
+Route::post('/jobs/create',[App\Http\Controllers\JobController::class, 'JobController'])->name('job.store');
+Route::get('/jobs/{id}/edit',[App\Http\Controllers\JobController::class, 'JobController'])->name('job.edit');
+Route::post('/jobs/{id}/edit',[App\Http\Controllers\JobController::class, 'JobController'])->name('job.update');
+Route::get('/jobs/my-job',[App\Http\Controllers\JobController::class, 'JobController'])->name('my.job');
+
+Route::get('/jobs/applications',[App\Http\Controllers\JobController::class, 'JobController'])->name('applicant');
+Route::get('/jobs/alljobs',[App\Http\Controllers\JobController::class, 'JobController'])->name('alljobs');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
