@@ -1,112 +1,77 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-// */
+use App\Http\Controllers\AccountController;
+use App\Http\Controllers\Auth\AdminController;
+use App\Http\Controllers\Auth\AuthorController;
+use App\Http\Controllers\CompanyCategoryController;
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\JobApplicationController;
+use App\Http\Controllers\JobController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\savedJobController;
+use Illuminate\Support\Facades\Route;
 
+//public routes
+Route::get('/', [PostController::class, 'index'])->name('post.index');
+Route::get('/job/{job}', [PostController::class, 'show'])->name('post.show');
+Route::get('employer/{employer}', [AuthorController::class, 'employer'])->name('account.employer');
 
-//jobs
-Route::get('/','JobController@index');
-Route::get('/jobs/create','JobController@create')->name('job.create');
-Route::post('/jobs/create','JobController@store')->name('job.store');
-Route::get('/jobs/{id}/edit','JobController@edit')->name('job.edit');
-Route::post('/jobs/{id}/edit','JobController@update')->name('job.update');
-Route::get('/jobs/my-job','JobController@myjob')->name('my.job');
+//return vue page
+Route::get('/search', [JobController::class, 'index'])->name('job.index');
 
-Route::get('/jobs/applications','JobController@applicant')->name('applicant');
-Route::get('/jobs/alljobs','JobController@allJobs')->name('alljobs');
+//auth routes
+Route::middleware('auth')->prefix('account')->group(function () {
+  //every auth routes AccountController
+  Route::get('logout', [AccountController::class, 'logout'])->name('account.logout');
+  Route::get('overview', [AccountController::class, 'index'])->name('account.index');
+  Route::get('deactivate', [AccountController::class, 'deactivateView'])->name('account.deactivate');
+  Route::get('change-password', [AccountController::class, 'changePasswordView'])->name('account.changePassword');
+  Route::delete('delete', [AccountController::class, 'deleteAccount'])->name('account.delete');
+  Route::put('change-password', [AccountController::class, 'changePassword'])->name('account.changePassword');
+  //savedJobs
+  Route::get('my-saved-jobs', [savedJobController::class, 'index'])->name('savedJob.index');
+  Route::get('my-saved-jobs/{id}', [savedJobController::class, 'store'])->name('savedJob.store');
+  Route::delete('my-saved-jobs/{id}', [savedJobController::class, 'destroy'])->name('savedJob.destroy');
+  //applyjobs
+  Route::get('apply-job', [AccountController::class, 'applyJobView'])->name('account.applyJob');
+  Route::post('apply-job', [AccountController::class, 'applyJob'])->name('account.applyJob');
 
+  //Admin Role Routes
+  Route::group(['middleware' => ['role:admin']], function () {
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('account.dashboard');
+    Route::get('view-all-users', [AdminController::class, 'viewAllUsers'])->name('account.viewAllUsers');
+    Route::delete('view-all-users', [AdminController::class, 'destroyUser'])->name('account.destroyUser');
 
+    Route::get('category/{category}/edit', [CompanyCategoryController::class, 'edit'])->name('category.edit');
+    Route::post('category', [CompanyCategoryController::class, 'store'])->name('category.store');
+    Route::put('category/{id}', [CompanyCategoryController::class, 'update'])->name('category.update');
+    Route::delete('category/{id}', [CompanyCategoryController::class, 'destroy'])->name('category.destroy');
+  });
 
-//Auth::routes();
-Auth::routes(['verify' => true]);
+  //Author Role Routes
+  Route::group(['middleware' => ['role:author']], function () {
+    Route::get('author-section', [AuthorController::class, 'authorSection'])->name('account.authorSection');
 
+    Route::get('job-application/{id}', [JobApplicationController::class, 'show'])->name('jobApplication.show');
+    Route::delete('job-application', [JobApplicationController::class, 'destroy'])->name('jobApplication.destroy');
+    Route::get('job-application', [JobApplicationController::class, 'index'])->name('jobApplication.index');
 
+    Route::get('post/create', [PostController::class, 'create'])->name('post.create');
+    Route::post('post', [PostController::class, 'store'])->name('post.store');
+    Route::get('post/{post}/edit', [PostController::class, 'edit'])->name('post.edit');
+    Route::put('post/{post}', [PostController::class, 'update'])->name('post.update');
+    Route::delete('post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
 
-/**
- * home page 
- * jobs page
- * routes are define here
- */
+    Route::get('company/create', [CompanyController::class, 'create'])->name('company.create');
+    Route::put('company/{id}', [CompanyController::class, 'update'])->name('company.update');
+    Route::post('company', [CompanyController::class, 'store'])->name('company.store');
+    Route::get('company/edit', [CompanyController::class, 'edit'])->name('company.edit');
+    Route::delete('company', [CompanyController::class, 'destroy'])->name('company.destroy');
+  });
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/jobs/{id}/{job}','JobController@show')->name('jobs.show');
-//company
-Route::get('/company/{id}/{company}','CompanyController@index')->name('company.index');
-Route::get('company/create','CompanyController@create')->name('company.view');
-Route::post('company/create','CompanyController@store')->name('company.store');
-
-
-Route::post('company/coverphoto','CompanyController@coverPhoto')->name('cover.photo');
-
-Route::post('company/logo','CompanyController@companyLogo')->name('company.logo');
-
-
-
-//user profile
-Route::get('user/profile','UserController@index')->name('user.profile');
-Route::post('user/profile/create','UserController@store')->name('profile.create');
-
-Route::post('user/coverletter','UserController@coverletter')->name('cover.letter');
-
-Route::post('user/resume','UserController@resume')->name('resume');
-Route::post('user/avatar','UserController@avatar')->name('avatar');
-
-
-
-//employer view
-Route::view('employer/register','auth.employer-register')->name('employer.register');
-
-Route::post('employer/register','EmployerRegisterController@employerRegister')->name('emp.register');
-
-Route::post('/applications/{id}','JobController@apply')->name('apply');
-
-
-//save and unsave job
-Route::post('/save/{id}','FavouriteController@saveJob');
-
-Route::post('/unsave/{id}','FavouriteController@unSaveJob');
-
-//category
-Route::get('/category/{id}/jobs','CategoryController@index')->name('category.index');
-
-//company
-Route::get('/companies','CompanyController@company')->name('company');
-
-
-//admin
-Route::get('/dashboard','DashboardController@index')->middleware('admin');
-Route::get('/dashboard/create','DashboardController@create')->middleware('admin');
-Route::post('/dashboard/create','DashboardController@store')->name('post.store')->middleware('admin');
-Route::post('/dashboard/destroy','DashboardController@destroy')->name('post.delete')->middleware('admin');
-
-Route::get('/dashboard/{id}/edit','DashboardController@edit')->name('post.edit')->middleware('admin');
-Route::post('/dashboard/{id}/update','DashboardController@update')->name('post.update')->middleware('admin');
-
-Route::get('/dashboard/trash','DashboardController@trash')->middleware('admin');
-
-Route::get('/dashboard/{id}/trash','DashboardController@restore')->name('post.restore')->middleware('admin');
-
-Route::get('/dashboard/{id}/toggle','DashboardController@toggle')->name('post.toggle')->middleware('admin');
-Route::get('/posts/{id}/{slug}','DashboardController@show')->name('post.show');
-
-Route::get('/dashboard/jobs','DashboardController@getAllJobs')->middleware('admin');
-Route::get('/dashboard/{id}/jobs','DashboardController@changeJobStatus')->name('job.status')->middleware('admin');
-
-
-//testimonial
-Route::get('testimonial','TestimonialController@index')->middleware('admin');
-
-Route::get('testimonial/create','TestimonialController@create')->middleware('admin');
-Route::post('testimonial/create','TestimonialController@store')->name('testimonial.store')->middleware('admin');
-
-//email
-Route::post('/job/mail','EmailController@send')->name('mail');
+  //User Role routes
+  Route::group(['middleware' => ['role:user']], function () {
+    Route::get('become-employer', [AccountController::class, 'becomeEmployerView'])->name('account.becomeEmployer');
+    Route::post('become-employer', [AccountController::class, 'becomeEmployer'])->name('account.becomeEmployer');
+  });
+});
