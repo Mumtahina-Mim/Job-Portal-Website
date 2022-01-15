@@ -37,16 +37,13 @@ Route::middleware('auth')->prefix('account')->group(function () {
   Route::post('apply-job', [AccountController::class, 'applyJob'])->name('account.applyJob');
 
   
-  Route::group(['middleware' => ['role:admin']], function () {
-    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('account.dashboard');
-    Route::get('view-all-users', [AdminController::class, 'viewAllUsers'])->name('account.viewAllUsers');
-    Route::delete('view-all-users', [AdminController::class, 'destroyUser'])->name('account.destroyUser');
+ 
 
     Route::get('category/{category}/edit', [CompanyCategoryController::class, 'edit'])->name('category.edit');
     Route::post('category', [CompanyCategoryController::class, 'store'])->name('category.store');
     Route::put('category/{id}', [CompanyCategoryController::class, 'update'])->name('category.update');
     Route::delete('category/{id}', [CompanyCategoryController::class, 'destroy'])->name('category.destroy');
-  });
+  );
 
   //Author Role Routes
   Route::group(['middleware' => ['role:author']], function () {
