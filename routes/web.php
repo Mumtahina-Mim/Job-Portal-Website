@@ -54,11 +54,6 @@ Route::middleware('auth')->prefix('account')->group(function () {
     Route::put('post/{post}', [PostController::class, 'update'])->name('post.update');
     Route::delete('post/{post}', [PostController::class, 'destroy'])->name('post.destroy');
 
-   
-    Route::post('company', [CompanyController::class, 'store'])->name('company.store');
-    Route::get('company/edit', [CompanyController::class, 'edit'])->name('company.edit');
-    Route::delete('company', [CompanyController::class, 'destroy'])->name('company.destroy');
-  });
 
   //User Role routes
   Route::group(['middleware' => ['role:user']], function () {
