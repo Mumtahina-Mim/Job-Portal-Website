@@ -36,5 +36,5 @@ Route::middleware('auth')->prefix('account')->group(function () {
     Route::post('company', [CompanyController::class, 'store'])->name('company.store');
     Route::get('company/edit', [CompanyController::class, 'edit'])->name('company.edit');
     Route::delete('company', [CompanyController::class, 'destroy'])->name('company.destroy');
-  });
+  
 });
