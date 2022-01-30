@@ -3,7 +3,7 @@
 @section('content')
   <div class="account-layout border">
     <div class="account-hdr bg-primary text-white border">
-      Create Job listings
+      Create Job list
     </div>
     <div class="account-bdy p-3">
       <div class="alert alert-primary">Your company details will be attached automatically.</div>
