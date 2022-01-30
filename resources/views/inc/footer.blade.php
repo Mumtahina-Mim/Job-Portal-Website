@@ -43,14 +43,14 @@
           <div class="footer-links">
             <h3 class="footer-brand mb-2">Job Portal</h3>
             <div class="footer-link-list">
-             <a href="#" class="footer-links"><i class="fas fa-compass"></i> Jahangirnagar University Savar,Dhaka</a>
-             <a href="tel:98400001511" class="footer-links"><i class="fas fa-phone"></i> +880-1776624584</a>
-             <a href="tel:98400001511" class="footer-links"><i class="fas fa-mobile"></i> +880-1825806237</a>
-             <a href="mailto:info@joblister.com" class="footer-links"><i class="fas fa-envelope"></i> info@job_portal.com</a>
+              <a href="#" class="footer-links"><i class="fas fa-compass"></i> Jahangirnagar University Savar,Dhaka</a>
+              <a href="tel:98400001511" class="footer-links"><i class="fas fa-phone"></i> +880-1776624584</a>
+              <a href="tel:98400001511" class="footer-links"><i class="fas fa-mobile"></i> +880-1825806237</a>
+              <a href="mailto:info@joblister.com" class="footer-links"><i class="fas fa-envelope"></i> info@job_portal.com</a>
              <div class="social-links">
-               <a href="https://www.facebook.com" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>
-               <a href="https://www.twitter.com"  target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
-               <a href="https://www.linkedin.com"   target="_blank" class="social-link"><i class="fab fa-linkedin" ></i></a>
+              <a href="https://www.facebook.com" target="_blank" class="social-link"><i class="fab fa-facebook"></i></a>
+              <a href="https://www.twitter.com"  target="_blank" class="social-link"><i class="fab fa-twitter"></i></a>
+              <a href="https://www.linkedin.com"   target="_blank" class="social-link"><i class="fab fa-linkedin" ></i></a>
              </div>
             </div>
           </div>
