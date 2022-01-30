@@ -83,7 +83,7 @@
                             </div>
                         </div>
                         <div>
-                            <small class="text-muted d-block mb-3">By clicking on 'Create Jobseeker Account' below you are agreeing to the terms and smallrivacy of Job Portal!</p>
+                            <small class="text-muted d-block mb-3">By clicking on 'Create Jobseeker Account' below you are agreeing to the terms and smallrivacy of Job Portal !</p>
                         </div>
                         <button type="submit" class="btn primary-btn btn-block">Register</button>
                     </form>
