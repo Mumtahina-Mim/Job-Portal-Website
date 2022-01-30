@@ -9,6 +9,7 @@
 
 Write something cool.. 🦊
 
+this is my first laravel documentation.where i use larecipe.</br>
 
 
 
