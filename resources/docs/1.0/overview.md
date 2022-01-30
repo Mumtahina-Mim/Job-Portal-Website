@@ -11,7 +11,3 @@ Write something cool.. 🦊
 
 - [Second Section](#section-2)
 
-<a name="section-2"></a>
-## First Section
-
-Write something cool.. 🦊
