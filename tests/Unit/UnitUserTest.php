@@ -70,4 +70,12 @@ class UnitUserTest extends TestCase
         $response = $this->delete('my-saved-jobs/{id}');
         $response->assertStatus(404);
     }
+
+    public function test_job_search()
+    {
+        $response = $this->get('/search');
+        $response->assertStatus(200);
+    }
+
+
 }
