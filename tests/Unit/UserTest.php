@@ -4,6 +4,10 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 
+use App\Models\Company;
+use App\Models\CompanyCategory;
+use Illuminate\Http\Request;
+
 class UserTest extends TestCase
 {
     /**
@@ -38,8 +42,11 @@ class UserTest extends TestCase
 
     public function test_company_destroy()
     {
-        $response = $this->delete('company');
-        $response->assertStatus(404);
+        Storage::delete('public/companies/logos/' . basename(auth()->user()->company->logo));
+        if (auth()->user()->company->delete()) {
+            return redirect()->route('account.authorSection');
+        }
+        return redirect()->route('account.authorSection');
     }
 
     public function test_company_category_store()
