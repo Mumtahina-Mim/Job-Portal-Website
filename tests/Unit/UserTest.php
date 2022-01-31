@@ -41,4 +41,10 @@ class UserTest extends TestCase
         $response = $this->delete('company');
         $response->assertStatus(404);
     }
+
+    public function test_company_category_store()
+    {
+        $response = $this->post('category');
+        $response->assertStatus(404);
+    }
 }
