@@ -48,7 +48,11 @@ class UserTest extends TestCase
         $response->assertStatus(404);
     }
 
-    
+    public function test_company_category_update()
+    {
+        $response = $this->put('category/{id}');
+        $response->assertStatus(404);
+    }
 
     public function test_company_category_edit()
     {
