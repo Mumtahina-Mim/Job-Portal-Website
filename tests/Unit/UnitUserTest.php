@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class UnitUserTest extends TestCase
 {
@@ -11,8 +11,21 @@ class UnitUserTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_post_index()
     {
-        $this->assertTrue(true);
+        $response = $this->get('/');
+        $response->assertStatus(200);
+    }
+
+    public function test_post_post_show()
+    {
+        $response = $this->get('/job/{job}');
+        $response->assertStatus(404);
+    }
+
+    public function test_post_post_show()
+    {
+        $response = $this->get('/job/{job}');
+        $response->assertStatus(404);
     }
 }
