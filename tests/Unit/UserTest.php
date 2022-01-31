@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 
 class UserTest extends TestCase
 {
@@ -11,8 +11,9 @@ class UserTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_company_create()
     {
-        $this->assertTrue(true);
+        $response = $this->get('company/create');
+        $response->assertStatus(404);
     }
 }
