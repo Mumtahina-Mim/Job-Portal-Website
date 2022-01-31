@@ -16,4 +16,12 @@ class UserTest extends TestCase
         $response = $this->get('company/create');
         $response->assertStatus(404);
     }
+
+    public function test_company_update()
+    {
+        $response = $this->put('company/{id}');
+        $response->assertStatus(404);
+    }
+
+   
 }
