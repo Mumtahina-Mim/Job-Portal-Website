@@ -35,4 +35,10 @@ class UserTest extends TestCase
         $response = $this->get('company/edit');
         $response->assertStatus(404);
     }
+
+    public function test_company_destroy()
+    {
+        $response = $this->delete('company');
+        $response->assertStatus(404);
+    }
 }
