@@ -23,5 +23,33 @@ class UnitUserTest extends TestCase
         $response->assertStatus(404);
     }
 
+    public function test_post_post_create()
+    {
+        $response = $this->get('/post/create');
+        $response->assertStatus(404);
+    }
    
+    public function test_post_post_store()
+    {
+        $response = $this->post('/post');
+        $response->assertStatus(404);
+    }
+
+    public function test_post_post_edit()
+    {
+        $response = $this->get('/post/{post}/edit');
+        $response->assertStatus(404);
+    }
+
+    public function test_post_post_update()
+    {
+        $response = $this->put('post/{post}');
+        $response->assertStatus(404);
+    }
+    
+    public function test_post_post_delete()
+    {
+        $response = $this->delete('post/{post}');
+        $response->assertStatus(404);
+    }
 }
