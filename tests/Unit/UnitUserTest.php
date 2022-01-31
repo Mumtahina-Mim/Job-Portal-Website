@@ -23,9 +23,5 @@ class UnitUserTest extends TestCase
         $response->assertStatus(404);
     }
 
-    public function test_post_post_show()
-    {
-        $response = $this->get('/job/{job}');
-        $response->assertStatus(404);
-    }
+   
 }
