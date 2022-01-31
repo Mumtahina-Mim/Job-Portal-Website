@@ -1,0 +1,12 @@
+- ## User Account Documentation
+    - [Apply Job](/{{route}}/{{version}}/applyJob)
+    - [Author Section](/{{route}}/{{version}}/authorSection)
+    - [Become Employer](/{{route}}/{{version}}/becomeEmployer)
+    - [Change Password](/{{route}}/{{version}}/changePassword)
+    - [Dashboard](/{{route}}/{{version}}/dashboard)
+    - [Deactivate](/{{route}}/{{version}}/deactivate)
+    - [Employer](/{{route}}/{{version}}/employer)
+    - [Saved Jobs](/{{route}}/{{version}}/savedJobs)
+    - [User Account](/{{route}}/{{version}}/userAccount)
+    - [View All User](/{{route}}/{{version}}/viewAllUser)
+

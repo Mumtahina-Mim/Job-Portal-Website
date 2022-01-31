@@ -1,5 +1,12 @@
 @extends('layouts.employer')
 
+<!--
+  For every employer they must have a clear profile for the job 
+  seeker and the other employer. In this section the system will 
+  a clear view of the user and the job seeker will be able to verify
+  the employer and start to work with him. 
+-->
+
 @section('content')
   <div class="employer-content border">
     <div class="container-fluid p-3">
@@ -8,6 +15,13 @@
           <h4 class="card-title text-secondary">Latest Vacancies</h4>
         </div>
         <div class="card-body">
+
+<!--
+  The employer can post a job from his wall and the update the
+  the vacancy of the project and the job seeker will be able to
+  find the total available job vacancy for the post and decide to
+  if the job seeker will try to bid for the project.
+-->
 
             @foreach ( $company->posts as $post)
             <div class="row mb-4 hover-shadow pb-2 pt-4">
@@ -23,6 +37,12 @@
                   <p class="small"><i class="fas fa-map-marker-alt"></i> {{$post->job_location}}</p>
                   <p class="small"><i class="fas fa-lightbulb"></i> {{$post->skills}}</p>
                   <div class="d-flex justify-content-between py-3">
+
+<!--
+  Everything about the project will be listed here and the job seeker
+  will be able to see the project criteria and match it with them. 
+-->
+
                     <div class="text-danger">
                       <i class="fas fa-clock"></i> <span class="">Apply Before: 
                         @php    

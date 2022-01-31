@@ -1,5 +1,10 @@
 @extends('layouts.account')
 
+<!--
+  In this section we will show all of the existing user in our system.
+  A person can see all the user information from this page.
+-->
+
 @section('content')
   <div class="account-layout  border">
     <div class="account-hdr bg-primary text-white border">
@@ -11,6 +16,14 @@
           <div class="table-responsive pt-3">
             <table class="table table-hover table-striped small">
               <thead>
+
+<!--
+  The system will show the information about a user in different way, 
+  system will display user name, email, when the user account was crearted,
+  and different types of action which is performed by this account in 
+  our system.
+-->
+
                 <tr>
                   <th>#</th>
                   <th>Users</th>

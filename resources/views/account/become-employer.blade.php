@@ -1,5 +1,13 @@
 @extends('layouts.account')
 @section('content')
+
+<!--
+  In this file an user upgrde himself as a employer.
+  An user can will be able to become a normal user to
+  employer by full fill some requirements which is 
+  required by the system.
+-->
+
 <div class="account-layout  border">
   <div class="account-hdr bg-primary text-white border">
    Become an employer in {{config('app.name')}}
@@ -13,6 +21,12 @@
         <div>
           <p class="text-sm"><i class="fas fa-info-circle"></i> <span class="font-weight-bold">Usually this should be validated by Admin but for testing it is one click away to become an employer.</span> </p>
           <div class="my-4">
+
+<!--
+  By clicking a simple button an user can become a 
+  employer in our system.
+-->
+
           <p class="my-3">Click the button to assign <span class="text-primary">Author roles</span> to your account.</p>
             <form action="{{route('account.becomeEmployer')}}" method="POST">
               @csrf

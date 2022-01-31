@@ -1,5 +1,12 @@
 @extends('layouts.account')
 
+<!--
+    In this section we will get some information about the 
+    author of the job and the freelencer for the desire project
+    which is posted by the employer and the person who is interested 
+    for the job or project.
+-->
+
 @section('content')
   <div class="account-layout  border">
     <div class="account-hdr bg-primary text-white border">
@@ -13,6 +20,13 @@
                       <div class="rotate">
                           <i class="fas fa-users fa-4x"></i>
                       </div>
+
+<!--
+    From this section the user will be able to see all the post
+    made by him and will able to make modificatoin in his desire
+    project which is hosted by him.
+-->
+
                       <h6 class="text-uppercase">My Posts</h6>
                       <h1 class="">{{$company? $company->posts->count() : 0}}</h1>
                   </div>
@@ -36,6 +50,12 @@
                         <div class="rotate">
                             <i class="fas fa-envelope fa-4x"></i>
                         </div>
+
+<!--
+    In this section the employer will be able to see the total application
+    he/she get for the project which is posted by him.
+-->
+
                         <h6 class="text-uppercase">Total Applications</h6>
                         <h1 class="">{{$applications? $applications->count():0}}</h1>
                     </div>
@@ -49,6 +69,13 @@
               <div class="col-sm-12 col-md-12">
                   <div class="card">
                       <div class="card-body">
+
+<!--
+    In this section the user will be able to change the different 
+    types of details which is provided by him in past. He can easily 
+    make some changes in his company details.
+-->
+
                           <h4 class="card-title">Manage Company Details</h4>
                           <p class="mb-3 alert alert-info">For job listings you need to add Company details.</p>
                           
@@ -86,6 +113,14 @@
           </div>
       </section>
 
+      <!--
+          In this section the employer will be able to add some 
+          extra information and requirements which is require for
+          the project, that was missing in the first time project 
+          details. He can also remove some requirements if he wish 
+          it to do so.
+      -->
+
       <section class="author-posts">
         <div class="row my-4">
           <div class="col-lg-12 col-md-8 col-sm-12">
@@ -108,6 +143,13 @@
                         </tr>
                     </thead>
                     <tbody>
+
+<!--
+    From this part the job seeker will be able to find the 
+    total vacancy for the project and he will also able to
+    know the total number of job seeker try for this job.
+-->
+
                         @if($company)
                             @foreach($company->posts as $index=>$post)
                             <tr>

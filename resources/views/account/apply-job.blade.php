@@ -2,6 +2,12 @@
 
 @section('content')
 <div class="account-layout border">
+
+  <!--
+    This section will handel the user profile and application 
+    for the required job which is posted by the employer.
+  -->
+
   <div class="account-hdr bg-primary text-white border">
     Apply for job
   </div>
@@ -18,6 +24,12 @@
                 <img src="{{asset('images/user-profile.png')}}" class="img-fluid rounded-circle" alt="">
               </div>
               <div class="col-9">
+                
+              <!--
+                  Different routes are configure here from where our code 
+                  will executed and reach the correct file using this routes
+              -->
+
                 <h6 class="text-info text-capitalize">{{auth()->user()->name}}</h6>
                 <p class="my-2"><i class="fas fa-envelope"></i> Email: {{auth()->user()->email}}</p>
                 <a href="{{route('account.index')}}">View My profile</a>
@@ -28,6 +40,13 @@
       </div>
       <div class="col-sm-12 col-md-12">
         <div class="card">
+
+        <!--
+          Some keywords will appear here by this keyword the job seeker will
+          understand the types of work which is required by the job employer.
+          From this section the job seeker will differentiate the jobs which 
+          can be done by him.
+        -->
           <div class="card-header">
             Key Job Requirements
           </div>
@@ -53,6 +72,13 @@
                 <a href="{{route('savedJob.store',['id'=>$post->id])}}" class="secondary-link"><i class="fas fa-share-square"></i> Save job</a>
               </div>
             </div>
+
+            <!--
+              In this section the job seeker will find some link contain
+              button and by pressing this button the job seeker apply for
+              the desire job which is posted by the employer.
+            -->
+
             <div class="mb-3 d-flex justify-content-end">
               <div class="small">
                 <a href="{{URL::previous()}}" class="btn primary-outline-btn">Cancel</a>
