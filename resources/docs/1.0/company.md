@@ -148,4 +148,4 @@ public function destroy()
 <a name="section-5"></a>
 
 ##Models
-> {success} Class get_result :  Handles the logic behind setting get result.</br>
+> {success} Class get_result :  Handles the logic behind setting get result and view those file in the view page.</br>

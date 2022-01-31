@@ -11,8 +11,9 @@
 <a name="section-1"></a>
 
 ##Description
- Here i implement a form where all employer can  create  company and they post job or vacance.</br>
- They also can accept  apply application .</br>
+ Here i implement a form where all employer can  create  company category .</br>
+ They also can edit any category.</br>
+ They can delete or destroy any company category.</br>
 
 
 
