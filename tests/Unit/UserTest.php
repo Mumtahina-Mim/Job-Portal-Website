@@ -25,7 +25,14 @@ class UserTest extends TestCase
 
     public function test_company_store()
     {
-        $response = $this->put('company');
+        $response = $this->post('company');
+        $response->assertStatus(404);
+    }
+
+    
+    public function test_company_edit()
+    {
+        $response = $this->get('company/edit');
         $response->assertStatus(404);
     }
 }
