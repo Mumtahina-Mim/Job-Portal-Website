@@ -47,4 +47,10 @@ class UserTest extends TestCase
         $response = $this->post('category');
         $response->assertStatus(404);
     }
+
+    public function test_company_category_edit()
+    {
+        $response = $this->get('category/{category}/edit');
+        $response->assertStatus(404);
+    }
 }
