@@ -2,55 +2,118 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Company;
-use App\Models\CompanyCategory;
-use App\Models\Post;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Job;
+use App\Company;
+use App\Http\Requests\JobPostRequest;
+use Auth;
+use App\User;
 
 class JobController extends Controller
 {
-    public function index()
-    {
-        return view('job.index');
+    public function __construct(){
+        $this->middleware(['employer','verified'],['except'=>array('index','show','apply','allJobs','searchJobs')]);
+    }
+    
+    
+    public function index(){
+    	$jobs = Job::latest()->limit(10)->where('status',1)->get();
+        $companies = Company::get()->random(12);
+       
+    	return view('welcome',compact('jobs','companies'));
+    }
+    public function show($id,Job $job){
+    	return view('jobs.show',compact('job'));
+    }
+    public function company(){
+    	return view('company.index');
     }
 
-    //api route
-    public function search(Request $request)
-    {
-        if ($request->q) {
-            $posts = Post::where('job_title', 'LIKE', '%' . $request->q . '%');
-        } elseif ($request->category_id) {
-            $posts = Post::whereHas('company', function ($query) use ($request) {
-                return $query->where('company_category_id', $request->category_id);
-            });
-        } elseif ($request->job_level) {
-            $posts = Post::where('job_level', 'Like', '%' . $request->job_level . '%');
-        } elseif ($request->education_level) {
-            $posts = Post::where('education_level', 'Like', '%' . $request->education_level . '%');
-        } elseif ($request->employment_type) {
-            $posts = Post::where('employment_type', 'Like', '%' . $request->employment_type . '%');
-        } else {
-            $posts = Post::take(30);
-        }
+    public function myjob(){
+        $jobs = Job::where('user_id',auth()->user()->id)->get();
+        return view('jobs.myjob',compact('jobs'));
+    }
 
-        $posts = $posts->has('company')->with('company')->paginate(6);
+    public function edit($id){
+        $job = Job::findOrFail($id);
+        return view('jobs.edit',compact('job'));
+    }
 
-        return $posts->toJson();
+    public function update(JobPostRequest $request,$id){
+        $job = Job::findOrFail($id);
+        $job->update($request->all());
+        return redirect()->back()->with('message','Job  Sucessfully Updated!');
+
     }
-    public function getCategories()
-    {
-        $categories = CompanyCategory::all();
-        return $categories->toJson();
+    public function applicant(){
+        $applicants = Job::has('users')->where('user_id',auth()->user()->id)->get();
+        return view('jobs.applicants',compact('applicants'));
     }
-    public function getAllOrganization()
-    {
-        $companies = Company::all();
-        return $companies->toJson();
+    
+
+    public function  create(){
+        return view('jobs.create');
     }
-    public function getAllByTitle()
-    {
-        $posts = Post::where('deadline', '>', Carbon::now())->get()->pluck('id', 'job_title');
-        return $posts->toJson();
+    public function  store(JobPostRequest $request){
+        
+        $user_id = auth()->user()->id;
+        $company = Company::where('user_id',$user_id)->first();
+        $company_id = $company->id;
+        Job::create([
+            'user_id' => $user_id,
+            'company_id' => $company_id,
+            'title'=>request('title'),
+            'slug' =>str_slug(request('title')),
+            'description'=>request('description'),
+            'roles'=>request('roles'),
+            'category_id' =>request('category'),
+            'position'=>request('position'),
+            'address'=>request('address'),
+            'type'=>request('type'),
+            'status'=>request('status'),
+            'last_date'=>request('last_date')
+
+
+        ]);
+        return redirect()->back()->with('message','Job posted successfully!');
+     }
+     
+     public function apply(Request $request,$id){
+        $jobId = Job::find($id);
+        $jobId->users()->attach(Auth::user()->id);
+        return redirect()->back()->with('message','Application sent!');
+
     }
+
+    public function allJobs(Request $request){
+        
+       $keyword = $request->get('title');
+       $type = $request->get('type');
+       $category = $request->get('category_id');
+       $address = $request->get('address');
+       if($keyword||$type||$category||$address){
+        $jobs = Job::where('title','LIKE','%'.$keyword.'%')
+                ->orWhere('type',$type)
+                ->orWhere('category_id',$category)
+                ->orWhere('address',$address)
+                ->paginate(10);
+                return view('jobs.alljobs',compact('jobs'));
+       }else{
+
+            $jobs = Job::latest()->paginate(10);
+            return view('jobs.alljobs',compact('jobs'));
+    }
+
+
+}
+    public function searchJobs(Request $request){
+       
+        $keyword = $request->get('keyword');
+        $users = Job::where('title','like','%'.$keyword.'%')
+                ->orWhere('position','like','%'.$keyword.'%')
+                ->limit(5)->get();
+        return response()->json($users);
+
+    }
+
 }
