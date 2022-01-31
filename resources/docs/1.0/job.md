@@ -11,7 +11,7 @@
 <a name="section-1"></a>
 
 ##Description
- Here I implement a form , where all employer can  create  company and they post job or vacance.</br>
+ Here I implement a form , where all employers can  create  company and they post job or vacance.</br>
  They also can accept  apply application .</br>
 
 
