@@ -12,7 +12,8 @@
 
 ##Description
  Here i implement a form where all employer can  create  company and they post job or vacance.</br>
- They also can accept  apply application .</br>
+ They also can edit any company name,title,feature etc .</br>
+ They can delete any company name.
 
 
 
